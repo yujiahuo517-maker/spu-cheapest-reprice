@@ -1,4 +1,4 @@
-﻿# spu-cheapest-reprice
+# spu-cheapest-reprice
 
 京喜「导出 SPU 下最便宜商品链接并改价」的 JoyCode Skill：把京喜商家后台导出的「导出商品JX-SKU信息」xlsx 填进底表后，自动算出每个 SPU（商品编码）下京东价最低的商品链接和改价建议，复现原 Excel Power Query 模板的全部逻辑，且**不依赖 Excel / Power Query**。
 
@@ -10,6 +10,12 @@
 4. 输出改嫁表 10 列，按可控采购价降序
 
 ## 用法
+
+### 最快：拖放（无需打开 JoyCode）
+
+把「导出商品JX-SKU信息....xlsx」直接拖到根目录的 `一键改价.bat` 上，自动生成结果并弹出资源管理器定位到输出文件。前提是装了 Python 且 `pip install openpyxl`。
+
+### 命令行 / JoyCode
 
 ```powershell
 python scripts/fill_reprice.py "<导出商品JX-SKU信息....xlsx>" [-o 输出路径.xlsx]
