@@ -134,6 +134,15 @@ def main():
 
     export = Path(args.export)
     out = Path(args.output) if args.output else export.with_name(export.stem + "_改价结果.xlsx")
+    # 结果文件被 Excel 占用时换带时间戳的文件名，而不是报错退出
+    if out.exists():
+        try:
+            with open(out, "ab"):
+                pass
+        except PermissionError:
+            from datetime import datetime
+            out = out.with_name(out.stem + "_" + datetime.now().strftime("%H%M%S") + out.suffix)
+            print(f"原结果文件正被占用（可能在 Excel 里开着），改存: {out.name}")
 
     headers, idx, data = read_export(export)
     groups = pick_cheapest(idx, data)
@@ -157,6 +166,7 @@ def main():
     wb.close()
     print(f"底表写入 {len(data)} 行 SKU；改嫁表输出 {len(groups)} 个 商品编码 的最便宜 SKU")
     print(f"输出: {out}")
+    print(f"RESULT_FILE={out}")
 
 
 if __name__ == "__main__":
