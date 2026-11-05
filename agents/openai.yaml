@@ -1,0 +1,5 @@
+interface:
+  display_name: "SPU 最便宜商品改价表"
+  short_description: "填入导出文件底表后自动算出每个 SPU 下最便宜的商品链接和改价建议"
+  brand_color: "#E1251B"
+  default_prompt: "Use $spu-cheapest-reprice to 用这个导出文件生成每个 SPU 下最便宜商品的改价表。"
